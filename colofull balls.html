@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAll Game</title>
+    <style>
+        #container{
+            width: 1000px;
+            height: 500px;
+            background-color: aquamarine;
+            border: 2px solid red;
+            overflow: hidden;
+            position: relative;
+        }
+        .neelabox{
+
+            height: 10px;
+            width: 10px;
+            border-radius: 10px;
+            background-color: blue;
+            border: 2px solid blue;
+            margin-left: 500px;
+            margin-top: 5px;
+            /* position: absolute; */
+        }
+        .red{
+            height: 10px;
+            width: 10px;
+            border-radius: 10px;
+            background-color: red;
+            border: 2px solid red;
+            position: absolute;
+            /* margin-left: 450px; */
+        }
+        .green{
+            position: absolute;
+            height: 10px;
+            width: 10px;
+            border-radius: 10px;
+            background-color: green;
+            border: 2px solid green;
+            /* margin-left: 885px; */
+        }
+    </style>
+</head>
+<body>
+    
+    <span id="itemnumber"></span>
+    <div id="container">
+
+    </div>
+
+    <script>
+
+        let recentelemnent;
+        let elemetentscreated=0;
+        let red=0;
+        let redkaoffsetleft=10;
+        let redkaoffsettop=0;
+        let greenkaoffsetleft=1000;
+        let greenkaoffsettop=0;
+        let green=0;
+        let blue=0;
+
+       let mainkey=setInterval(() => {
+            
+        itemnumber.innerText="";
+
+            let number=Math.random()*3;
+            // let number=1;
+            console.log(number);
+        if(number<=1){
+            let a =document.createElement('div');
+            a.className="neelabox";
+            document.getElementById('container').appendChild(a);
+            recentelemnent=a;
+            elemetentscreated++;
+            blue++;
+            itemnumber.innerText="Balls Created Till Now:"+elemetentscreated+" Blue till Now"+blue +"red:"+red+"Green"+green;
+        }
+        else if(number>1 && number<=2){
+            let a =document.createElement('div');
+            a.className="red";
+            a.style.left=(redkaoffsetleft)+'px';
+            a.style.top=(redkaoffsettop)+'px';
+            recentelemnent=a;
+            document.getElementById('container').appendChild(a);
+            redkaoffsetleft=a.offsetLeft+a.offsetHeight;
+            redkaoffsettop=a.offsetTop+a.offsetWidth;
+                elemetentscreated++;
+                red++;
+                itemnumber.innerText="Balls Created Till Now:"+elemetentscreated+" Red till Now"+red+"Blue:"+blue+"Green"+green;
+
+        }
+        else if(number>2 && number<=3){
+            let a =document.createElement('div');
+            a.className="green";
+            a.style.left=(greenkaoffsetleft)+'px';
+            a.style.top=(greenkaoffsettop)+'px';
+            recentelemnent=a;
+            document.getElementById('container').appendChild(a);
+            greenkaoffsetleft=a.offsetLeft-a.offsetHeight;
+            greenkaoffsettop=a.offsetTop+a.offsetWidth;
+            recentelemnent=a;
+                elemetentscreated++;
+                green++;
+                itemnumber.innerText="Balls Created Till Now:"+elemetentscreated+" Green till Now"+green+"Blue:"+blue+"REd"+red;
+        }
+
+        if(recentelemnent.offsetTop>=500){
+            console.log(recentelemnent.offsetTop);
+            console.log("Interval Rukka");
+            clearInterval(mainkey);
+        }
+    }, 100);
+   
+    </script>
+    </body>
+</html>
